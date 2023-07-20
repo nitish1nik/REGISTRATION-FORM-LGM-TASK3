@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html style="background-image: url(forms.png);">
+<style>
+    html {
+        background-repeat: no-repeat;
+        height: 1000px;
+        width: 1000px;
+        background-size: 1800px;
+    }
+</style>
+
+<head>
+    <title>Registration Form</title>
+    <style>
+        /* Basic styling for the form */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        .registration-form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="registration-form">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+
+        <div id="displayData">
+            <!-- Displayed data will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const displayDataDiv = document.getElementById('displayData');
+            displayDataDiv.innerHTML = '<h2>Registered Data:</h2>';
+            for (const [key, value] of formData.entries()) {
+                displayDataDiv.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+</body>
+
+</html>
